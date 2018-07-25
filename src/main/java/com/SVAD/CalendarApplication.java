@@ -156,30 +156,29 @@ class EventController {
 		Date startDate = null;
 		Date endDate = null;
 		SimpleDateFormat inputDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		try {
 			startDate = inputDateFormat.parse(start);
 		} catch (ParseException e) {
 			throw new BadDateFormatException("bad start date: " + start);
 		}
-		
+
 		try {
 			endDate = inputDateFormat.parse(end);
 		} catch (ParseException e) {
 			throw new BadDateFormatException("bad end date: " + end);
 		}
-		
-		return eventRepository.findByDatesBetween(startDate, endDate); 
+
+		return eventRepository.findByDatesBetween(startDate, endDate);
 	}
-	
+
 }
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 class BadDateFormatException extends RuntimeException {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 	public BadDateFormatException(String dateString) {
-        super(dateString);
-    }
+		super(dateString);
+	}
 }
-
